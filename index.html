@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vet Pet Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: DM Serif Display (Serif) & Inter (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for a cinematic feel and elegant animations */
+        :root {
+            --primary-color: #5833ff;
+            --secondary-color: #f7f7f7;
+            --text-color-dark: #222222;
+            --text-color-light: #ffffff;
+            --bg-dark: #000000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color-dark);
+            background-color: var(--secondary-color);
+        }
+
+        .font-serif-display {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        /* Fade-in-on-scroll animation */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero background effect */
+        .hero-bg {
+            position: relative;
+            background: #f7f7f7;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.1), transparent),
+                        radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Final CTA background effect */
+        .final-cta-bg {
+            position: relative;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        .final-cta-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 25%, transparent 25%) -50px 0,
+                        linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%) -50px 0,
+                        linear-gradient(135deg, transparent 75%, rgba(255,255,255,0.05) 75%),
+                        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.05) 75%);
+            background-size: 100px 100px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        /* FAQ Accordion Styling */
+        details[open] summary ~ * {
+            animation: slideDown 0.3s ease-in-out;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+            font-weight: 300;
+            transform: scaleX(1.1);
+        }
+
+        details[open] summary::after {
+            content: '-';
+            transform: scaleX(1.1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- 0. Navigation Bar (Fixed) -->
+    <header class="fixed top-0 left-0 right-0 z-50 py-4 px-6 md:px-12 backdrop-blur-md bg-white/70">
+        <nav class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-xl font-bold font-serif-display tracking-wide text-gray-800">
+                Vet Pet Digital
+            </a>
+
+            <!-- Nav Links (hidden on mobile) -->
+            <ul class="hidden md:flex flex-grow justify-center space-x-8">
+                <li><a href="#features" class="text-gray-600 hover:text-gray-900 transition-colors">Recursos</a></li>
+                <li><a href="#how-it-works" class="text-gray-600 hover:text-gray-900 transition-colors">Como Funciona</a></li>
+                <li><a href="#why-choose" class="text-gray-600 hover:text-gray-900 transition-colors">Por Que Escolher</a></li>
+                <li><a href="#testimonials" class="text-gray-600 hover:text-gray-900 transition-colors">Depoimentos</a></li>
+                <li><a href="#faq" class="text-gray-600 hover:text-gray-900 transition-colors">FAQ</a></li>
+            </ul>
+
+            <!-- CTA Button -->
+            <a href="#final-cta" class="inline-block bg-black text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-800 hover:scale-105 shadow-lg">
+                Começar Agora
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 md:pt-32">
+
+        <!-- 1. Hero (Hook Section) -->
+        <section id="hero" class="hero-bg min-h-screen flex items-center py-16 px-6 md:px-12">
+            <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+                <!-- Left Column (Content) -->
+                <div class="w-full md:w-1/2 flex flex-col items-start text-center md:text-left fade-in-section">
+                    <span class="text-sm font-medium text-gray-500 mb-4">99% de satisfação!</span>
+                    <h1 class="font-serif-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
+                        Loly aqui! Dois GPTs para bombar o seu Instagram e lotar a sua agenda! 🐾
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-xl">
+                        Sou a Loly, sua assistente canina de marketing, e trouxe não um, mas DOIS superpoderes para transformar a comunicação da sua clínica veterinária ou pet shop. E o melhor: por um valor que cabe na sua patinha! 🐶
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#final-cta" class="bg-black text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-gray-800 hover:scale-105 shadow-lg">
+                            Garantir agora meus superpoderes
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Image Mockup) -->
+                <div class="w-full md:w-1/2 flex justify-center mt-12 md:mt-0 fade-in-section">
+                    <img
+                        src="https://placehold.co/800x600/f0e6ff/5833ff?text=Luxury+AI+Marketing+Mockup"
+                        alt="A large AI-generated image showing a marketing dashboard for pet care, with a friendly cartoon dog mascot."
+                        class="w-full h-auto max-w-2xl rounded-3xl shadow-2xl transition-transform duration-500 ease-in-out hover:scale-105"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Credibility Logos -->
+        <section class="py-16 px-6 md:px-12 fade-in-section">
+            <div class="container mx-auto flex items-center justify-center flex-wrap gap-8 opacity-70">
+                <p class="text-sm text-gray-400 font-medium tracking-wider uppercase">Trusted by:</p>
+                <img src="https://placehold.co/120x40/f7f7f7/999?text=Partner+1" alt="Partner 1 Logo" class="h-8 md:h-10 grayscale hover:grayscale-0 transition-all duration-300">
+                <img src="https://placehold.co/120x40/f7f7f7/999?text=Partner+2" alt="Partner 2 Logo" class="h-8 md:h-10 grayscale hover:grayscale-0 transition-all duration-300">
+                <img src="https://placehold.co/120x40/f7f7f7/999?text=Partner+3" alt="Partner 3 Logo" class="h-8 md:h-10 grayscale hover:grayscale-0 transition-all duration-300">
+            </div>
+        </section>
+
+        <!-- 3. Features Section (Benefit Cards) -->
+        <section id="features" class="py-16 px-6 md:px-12 fade-in-section">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif-display text-center mb-16">Recursos</h2>
+                
+                <!-- Main Card (full width) -->
+                <div class="bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-gray-200 mb-8 transition-all duration-300 hover:shadow-xl">
+                    <p class="text-xl md:text-2xl font-bold text-gray-800 text-center">
+                        Apresento o Combo Pet GPT: dois geradores de conteúdo prontos pra facilitar sua vida e turbinar suas redes sociais.
+                    </p>
+                </div>
+
+                <!-- Secondary Cards (grid) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-gray-200 text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <img src="https://placehold.co/200x200/f0e6ff/5833ff?text=Loly+GPT" alt="A friendly dog mascot icon" class="mx-auto w-24 h-24 mb-6 rounded-full">
+                        <h3 class="font-serif-display text-2xl font-bold mb-2">Loly - GPT 1 – Conteúdo AIDA</h3>
+                        <p class="text-gray-600">Cria posts, carrosséis, reels ou stories prontos para publicar.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-gray-200 text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <img src="https://placehold.co/200x200/e6fff0/33ff58?text=Spencer+GPT" alt="A sophisticated cat mascot icon" class="mx-auto w-24 h-24 mb-6 rounded-full">
+                        <h3 class="font-serif-display text-2xl font-bold mb-2">Spencer - GPT 2 – StoryBrand para Veterinários</h3>
+                        <p class="text-gray-600">Conta histórias que emocionam e vendem.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. "Why Choose" Section (Pillars) -->
+        <section id="why-choose" class="py-16 px-6 md:px-12 fade-in-section">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif-display text-center mb-16">Por que escolher?</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                    <!-- Pillar 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <div class="text-4xl mb-4">⏳</div>
+                        <h3 class="font-bold text-gray-800 mb-2">Economize tempo</h3>
+                        <p class="text-gray-600 text-sm">mais horas cuidando dos pets, menos horas quebrando a cabeça.</p>
+                    </div>
+                    <!-- Pillar 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <div class="text-4xl mb-4">💡</div>
+                        <h3 class="font-bold text-gray-800 mb-2">Posts profissionais</h3>
+                        <p class="text-gray-600 text-sm">como se tivesse contratado uma agência.</p>
+                    </div>
+                    <!-- Pillar 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <div class="text-4xl mb-4">🐾</div>
+                        <h3 class="font-bold text-gray-800 mb-2">Zero complicação</h3>
+                        <p class="text-gray-600 text-sm">perfeito pra quem não entende de marketing.</p>
+                    </div>
+                    <!-- Pillar 4 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h3 class="font-bold text-gray-800 mb-2">Preço amigo</h3>
+                        <p class="text-gray-600 text-sm">solução low ticket com resultado de alto valor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Testimonials Section -->
+        <section id="testimonials" class="bg-gray-100 py-16 px-6 md:px-12 fade-in-section">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif-display text-center mb-16">O que nossos clientes dizem</h2>
+                <div class="flex flex-col md:flex-row gap-8 justify-center">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 transition-all duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center text-center">
+                        <img src="https://placehold.co/80x80/f7f7f7/555?text=Dra.+P" alt="Avatar of Dra. Pauline" class="w-20 h-20 rounded-full mb-4 object-cover">
+                        <div class="flex text-yellow-500 mb-2">★★★★★</div>
+                        <p class="text-gray-600 mb-4 italic">"Loly, você salvou minha vida! Agora tenho posts novos toda semana sem perder tempo."</p>
+                        <p class="font-medium text-gray-800">- Dra. Pauline</p>
+                        <p class="text-sm text-gray-500">Vet Pet Care Center</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 transition-all duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center text-center">
+                        <img src="https://placehold.co/80x80/f7f7f7/555?text=Dr.+S" alt="Avatar of Dr. Stephen" class="w-20 h-20 rounded-full mb-4 object-cover">
+                        <div class="flex text-yellow-500 mb-2">★★★★★</div>
+                        <p class="text-gray-600 mb-4 italic">"Minhas campanhas nunca tiveram tanta interação. É como ter um time de marketing só meu."</p>
+                        <p class="font-medium text-gray-800">- Dr. Stephen</p>
+                        <p class="text-sm text-gray-500">Animal Life Center</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FAQ Section -->
+        <section id="faq" class="py-16 px-6 md:px-12 fade-in-section">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif-display text-center mb-16">Perguntas Frequentes</h2>
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <details class="group bg-white p-6 rounded-2xl shadow-lg border border-gray-200 cursor-pointer transition-all duration-300 hover:shadow-xl">
+                        <summary class="flex justify-between items-center text-lg font-medium text-gray-800 relative list-none">
+                            O Combo Buddy GPT é difícil de usar?
+                        </summary>
+                        <div class="mt-4 text-gray-600 leading-relaxed">
+                            Não, o Combo Buddy GPT foi criado pensando em quem não tem experiência em marketing. A interface é intuitiva e o processo de criação de conteúdo é guiado passo a passo, tornando tudo muito simples e prático.
+                        </div>
+                    </details>
+                    <!-- FAQ 2 -->
+                    <details class="group bg-white p-6 rounded-2xl shadow-lg border border-gray-200 cursor-pointer transition-all duration-300 hover:shadow-xl">
+                        <summary class="flex justify-between items-center text-lg font-medium text-gray-800 relative list-none">
+                            Como o conteúdo é gerado?
+                        </summary>
+                        <div class="mt-4 text-gray-600 leading-relaxed">
+                            Os GPTs utilizam inteligência artificial avançada para entender as suas necessidades e gerar textos e ideias relevantes para a sua clínica ou pet shop. O conteúdo é otimizado para engajamento e conversão, sempre com foco no seu público.
+                        </div>
+                    </details>
+                    <!-- FAQ 3 -->
+                    <details class="group bg-white p-6 rounded-2xl shadow-lg border border-gray-200 cursor-pointer transition-all duration-300 hover:shadow-xl">
+                        <summary class="flex justify-between items-center text-lg font-medium text-gray-800 relative list-none">
+                            Posso editar o conteúdo gerado?
+                        </summary>
+                        <div class="mt-4 text-gray-600 leading-relaxed">
+                            Sim, o conteúdo gerado é uma base sólida para você. Você pode e deve adaptá-lo ao seu tom de voz, adicionar detalhes específicos e fazer os ajustes necessários para que o conteúdo seja 100% autêntico à sua marca.
+                        </div>
+                    </details>
+                    <!-- FAQ 4 -->
+                    <details class="group bg-white p-6 rounded-2xl shadow-lg border border-gray-200 cursor-pointer transition-all duration-300 hover:shadow-xl">
+                        <summary class="flex justify-between items-center text-lg font-medium text-gray-800 relative list-none">
+                            Qual é o modelo de assinatura?
+                        </summary>
+                        <div class="mt-4 text-gray-600 leading-relaxed">
+                            O Combo Buddy GPT é oferecido por um valor único e acessível. Você faz um pagamento para ter acesso aos dois GPTs, sem mensalidades ou taxas escondidas. É uma solução de alto valor por um preço que cabe na sua patinha.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Final CTA -->
+        <section id="final-cta" class="final-cta-bg py-24 px-6 md:px-12 text-white fade-in-section">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+                <!-- Left Column -->
+                <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left z-10">
+                    <h2 class="font-serif-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
+                        Pare de perder tempo e comece hoje mesmo
+                    </h2>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#" class="bg-white text-black px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-gray-200 hover:scale-105 shadow-lg">
+                            Garantir agora meus superpoderes
+                        </a>
+                    </div>
+                </div>
+                <!-- Right Column (Small App Mockup) -->
+                <div class="w-full md:w-1/2 flex justify-center z-10">
+                    <img
+                        src="https://placehold.co/400x300/e6f0ff/3358ff?text=App+Mockup"
+                        alt="A small AI-generated app mockup showing content generation"
+                        class="w-full h-auto max-w-sm rounded-3xl shadow-2xl transition-transform duration-500 ease-in-out hover:scale-105"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Footer -->
+        <footer class="bg-gray-900 text-gray-400 py-8 px-6 md:px-12">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
+                <p>&copy; 2025 Vet Pet Digital. Todos os direitos reservados.</p>
+                <a href="https://www.instagram.com/kelirosa.copy" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                    Instagram: @kelirosa.copy
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- JavaScript for Fade-in-on-scroll animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 /* Trigger when 10% of the section is visible */
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
